@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzaria da Aline Garcês Diniz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #FF6347;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .cardapio {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .cardapio h2 {
+            text-align: center;
+            color: #FF6347;
+        }
+
+        .cardapio table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .cardapio table th, .cardapio table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .cardapio table th {
+            background-color: #FF6347;
+            color: white;
+        }
+
+        .pedido {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .pedido label {
+            font-weight: bold;
+            margin-top: 1rem;
+            display: block;
+        }
+
+        .pedido select, .pedido button {
+            width: 100%;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .pedido button {
+            background-color: #FF6347;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .pedido button:hover {
+            background-color: #E5533C;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #f4f4f9;
+            color: #666;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bem-vindos à Pizzaria da Aline Garcês Diniz</h1>
+    </header>
+    <main>
+        <div class="cardapio">
+            <h2>Cardápio</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pizza Salgada</th>
+                        <th>Pizza Doce</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tamanho P: R$ 30</td>
+                        <td>Tamanho P: R$ 34</td>
+                    </tr>
+                    <tr>
+                        <td>Tamanho M: R$ 45</td>
+                        <td>Tamanho M: R$ 48</td>
+                    </tr>
+                    <tr>
+                        <td>Tamanho G: R$ 60</td>
+                        <td>Tamanho G: R$ 66</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pedido">
+            <h2>Faça seu Pedido</h2>
+            <label for="sabor">Escolha o sabor:</label>
+            <select id="sabor">
+                <option value="PS">Pizza Salgada</option>
+                <option value="PD">Pizza Doce</option>
+            </select>
+
+            <label for="tamanho">Escolha o tamanho:</label>
+            <select id="tamanho">
+                <option value="P">Pequena</option>
+                <option value="M">Média</option>
+                <option value="G">Grande</option>
+            </select>
+
+            <button onclick="adicionarPedido()">Adicionar ao Pedido</button>
+
+            <h3>Total do Pedido:</h3>
+            <p id="valorTotal">R$ 0.00</p>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 - Pizzaria da Aline Garcês Diniz</p>
+    </footer>
+    <script>
+        let valorTotal = 0;
+
+        function adicionarPedido() {
+            const sabor = document.getElementById("sabor").value;
+            const tamanho = document.getElementById("tamanho").value;
+            let preco = 0;
+
+            if (sabor === "PS") {
+                if (tamanho === "P") preco = 30;
+                else if (tamanho === "M") preco = 45;
+                else if (tamanho === "G") preco = 60;
+            } else if (sabor === "PD") {
+                if (tamanho === "P") preco = 34;
+                else if (tamanho === "M") preco = 48;
+                else if (tamanho === "G") preco = 66;
+            }
+
+            valorTotal += preco;
+            document.getElementById("valorTotal").innerText = `R$ ${valorTotal.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
